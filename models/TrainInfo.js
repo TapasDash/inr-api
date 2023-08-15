@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-export const trainTimetableSchema = new Schema(
+export const trainInfoSchema = new Schema(
   {
     trainNo: String,
     trainName: String,
@@ -18,14 +18,15 @@ export const trainTimetableSchema = new Schema(
     toTime: String,
     travelTime: String,
     runningDays: String,
-    trainId: String,
+    //spcl
+    type: String,
     distanceFromTo: String,
     averageSpeed: String,
   },
-  { collection: "timetable" },
+  { collection: "trainInfo" },
   { timestamps: true }
 );
 
-const TrainTimetable = mongoose.model("timetable", trainTimetableSchema);
+const TrainInfo = mongoose.model("trainInfo", trainInfoSchema);
 
-export default TrainTimetable;
+export default TrainInfo;

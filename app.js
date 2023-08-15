@@ -4,9 +4,10 @@ import { config } from "dotenv";
 // import gettrain from "./routes/getTrains.js";
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 import trainTimetableRouter from "./routes/trainTimetableRouter.js";
+import connectDB from "./config/db.js";
 
 config();
-
+connectDB();
 const PORT = process.env.PORT || 3000;
 const app = express();
 

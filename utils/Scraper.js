@@ -1,5 +1,5 @@
 class Scraper {
-  getTrainsBetweenStations(string) {
+  static getTrainsBetweenStations(string) {
     try {
       let obj = {};
       const returnResponse = {};
@@ -29,9 +29,7 @@ class Scraper {
         let filteredData = data[i].split("~^");
         if (filteredData.length === 2) {
           filteredData = filteredData[1].split("~");
-          filteredData = filteredData.filter((el) => {
-            return el != "";
-          });
+          filteredData = filteredData.filter(Boolean);
           obj["trainNo"] = filteredData[0];
           obj["trainName"] = filteredData[1];
           obj["sourceStationName"] = filteredData[2];
@@ -70,19 +68,19 @@ class Scraper {
   //   return day;
   // };
 
-  getTrainRoute(string) {
+  static getTrainRoute(string) {
     try {
       const data = string.split("~^");
       const arr = [];
-      const obj = {};
+      let obj = {};
       const returnResponse = {};
       for (let i = 0; i < data.length; i++) {
         let filteredData = data[i].split("~");
         filteredData = filteredData.filter(Boolean);
         obj["sourceStationName"] = filteredData[2];
         obj["sourceStationCode"] = filteredData[1];
-        obj["arrive"] = filteredData[3];
-        obj["depart"] = filteredData[4];
+        obj["arrival"] = filteredData[3];
+        obj["departure"] = filteredData[4];
         obj["distance"] = filteredData[6];
         obj["day"] = filteredData[7];
         obj["zone"] = filteredData[9];
@@ -98,7 +96,7 @@ class Scraper {
     }
   }
 
-  getTrainInfoByDate(string) {
+  static getTrainInfo(string) {
     try {
       const obj = {};
       const returnResponse = {};
