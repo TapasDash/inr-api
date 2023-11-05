@@ -2,6 +2,25 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
+const scheduleSchema = new Schema({
+  dstCode: String,
+  dstName: String,
+  dstLat: String,
+  dstLng: String,
+  routeNo: String,
+  distance: String,
+  dayArrive: String,
+  dayDepart: String,
+  orgDepart: String,
+  orgArrive: String,
+  dstDepart: String,
+  dstArrive: String,
+  platform: String,
+  delay: String,
+  speed: String,
+  platformAsString: String,
+});
+
 export const trainInfoSchema = new Schema(
   {
     trainNo: String,
@@ -22,6 +41,7 @@ export const trainInfoSchema = new Schema(
     type: String,
     distanceFromTo: String,
     averageSpeed: String,
+    schedules: [scheduleSchema],
   },
   { collection: "trainInfo" },
   { timestamps: true }

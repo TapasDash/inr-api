@@ -5,12 +5,14 @@ import { config } from "dotenv";
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 import trainTimetableRouter from "./routes/trainTimetableRouter.js";
 import connectDB from "./config/db.js";
+import cors from "cors";
 
 config();
 connectDB();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const app = express();
 
+app.use(cors({ origin: "*" }));
 // app.use("/", home);
 app.use("/api", trainTimetableRouter);
 

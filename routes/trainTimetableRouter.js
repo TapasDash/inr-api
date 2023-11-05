@@ -5,6 +5,7 @@ import {
   getTrainRoute,
   getTrainsBetweenStations,
 } from "../controllers/getTrains.js";
+import { getTrainInfoDropown } from "../controllers/trainController.js";
 // import {
 //   getTrainData,
 //   getTrainInfo,
@@ -14,6 +15,7 @@ import {
 const trainTimetableRouter = express.Router();
 
 trainTimetableRouter.route("/train").get(getTrainInfo);
+trainTimetableRouter.route("/train/dropdown").get(getTrainInfoDropown);
 trainTimetableRouter.route("/train/:trainNo").get(getTrainRoute);
 trainTimetableRouter.route("/train/:from/:to").get(getTrainsBetweenStations);
 trainTimetableRouter.route("/train/:from/:to/:date").get(getTrainInfoByDate);

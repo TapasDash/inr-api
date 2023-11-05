@@ -49,7 +49,7 @@ class Scraper {
           obj = {};
           obj2 = {};
         }
-      }
+      } 
       returnResponse["success"] = true;
       returnResponse["timestamp"] = Date.now();
       returnResponse["data"] = arr;

@@ -2,6 +2,8 @@ import asyncHandler from "express-async-handler";
 import redisClient from "../config/redisClient.js";
 import TrainTimetable from "../models/TrainTimetable.js";
 import redisKey from "../config/redisKeys.js";
+import TrainDetails from "../models/TrainDetails.js";
+import redisKeys from "../config/redisKeys.js";
 
 export const getTrainData = asyncHandler(async (req, res) => {
   const { trainNo } = req.query;
@@ -77,8 +79,8 @@ export const getTrainsBetweenStations = asyncHandler(async (req, res) => {
   });
 });
 
-export const getTrainInfo = asyncHandler(async (req, res) => {
-  const cachedTrainInfo = await redisClient.get(redisKey.TRAIN_INFO);
+export const getTrainInfoDropown = asyncHandler(async (req, res) => {
+  const cachedTrainInfo = await redisClient.get(redisKeys.TRAIN_INFO);
   if (cachedTrainInfo) {
     console.log("using cached data");
     return res.status(200).json({
@@ -88,7 +90,7 @@ export const getTrainInfo = asyncHandler(async (req, res) => {
     });
   }
 
-  const trainData = await TrainTimetable.aggregate()
+  const trainData = await TrainDetails.aggregate()
     .group({
       _id: "$trainNo",
       trainName: {

@@ -58,32 +58,77 @@ export const saveTrainSearchData = asyncHandler(async ({ from, to, data }) => {
     });
 });
 
+// export const saveTrainInfo = asyncHandler(
+//   async ({
+//     dstCode,
+//     dstName,
+//     dstLat,
+//     dstLng,
+//     routeNo,
+//     distance,
+//     dayArrive,
+//     dayDepart,
+//     dstDepart,
+//     dstArrive,
+//     platform,
+//     delay,
+//     speed,
+//     platformAsString,
+//   }) => {
+//     const ifTrainDataExists = await TrainInfo.exists({
+//       trainNo,
+//       fromStationCode,
+//       toStationCode,
+//     });
+//     if (!ifTrainDataExists)
+//       await TrainInfo.create({
+//         dstCode,
+//         dstName,
+//         dstLat,
+//         dstLng,
+//         routeNo,
+//         distance,
+//         dayArrive,
+//         dayDepart,
+//         dstDepart,
+//         dstArrive,
+//         platform,
+//         delay,
+//         speed,
+//         platformAsString,
+//       });
+//   }
+// );
 export const saveTrainInfo = asyncHandler(
-  async ({
-    trainNo,
-    trainName,
-    sourceStationName,
-    sourceStationCode,
-    destinationStationName,
-    destinationStationCode,
-    fromStationName,
-    fromStationCode,
-    toStationName,
-    toStationCode,
-    fromTime,
-    toTime,
-    travelTime,
-    runningDays,
-    //spcl
-    type,
-    distanceFromTo,
-    averageSpeed,
-  }) => {
+  async (
+    {
+      trainNo,
+      trainName,
+      sourceStationName,
+      sourceStationCode,
+      destinationStationName,
+      destinationStationCode,
+      fromStationName,
+      fromStationCode,
+      toStationName,
+      toStationCode,
+      fromTime,
+      toTime,
+      travelTime,
+      runningDays,
+      //spcl
+      type,
+      distanceFromTo,
+      averageSpeed,
+    },
+    schedules
+  ) => {
     const ifTrainDataExists = await TrainInfo.exists({
       trainNo,
       fromStationCode,
       toStationCode,
     });
+    console.log("schedules----->", ifTrainDataExists);
     if (!ifTrainDataExists)
       await TrainInfo.create({
         trainNo,
@@ -104,6 +149,7 @@ export const saveTrainInfo = asyncHandler(
         type,
         distanceFromTo,
         averageSpeed,
+        schedules,
       });
   }
 );
