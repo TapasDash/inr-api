@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  getPnrStatus,
   getTrainInfo,
   getTrainInfoByDate,
   getTrainRoute,
@@ -17,6 +18,7 @@ const trainTimetableRouter = express.Router();
 trainTimetableRouter.route("/train").get(getTrainInfo);
 trainTimetableRouter.route("/train/dropdown").get(getTrainInfoDropown);
 trainTimetableRouter.route("/train/:trainNo").get(getTrainRoute);
+trainTimetableRouter.route("/train/pnr/:pnrNo").get(getPnrStatus);
 trainTimetableRouter.route("/train/:from/:to").get(getTrainsBetweenStations);
 trainTimetableRouter.route("/train/:from/:to/:date").get(getTrainInfoByDate);
 

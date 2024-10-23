@@ -148,6 +148,19 @@ export const getTrainInfoByDate = async (req, res) => {
 //   }
 // };
 
+export const getPnrStatus = async (req, res) => {
+  const pnrnumber = req.params.pnrNo;
+  try {
+    let URL_Train = `https://www.confirmtkt.com/pnr-status/${pnrnumber}`;
+    let response = await fetch(URL_Train);
+    let data = await response.text();
+    let json = Scraper.getPnrStatus(data);
+    res.send(json);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getTrainRoute = async (req, res) => {
   const { trainNo } = req.params;
   try {

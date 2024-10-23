@@ -49,7 +49,7 @@ class Scraper {
           obj = {};
           obj2 = {};
         }
-      } 
+      }
       returnResponse["success"] = true;
       returnResponse["timestamp"] = Date.now();
       returnResponse["data"] = arr;
@@ -94,6 +94,17 @@ class Scraper {
     } catch (err) {
       console.log(err.message);
     }
+  }
+
+  static getPnrStatus(string) {
+    let retval = {};
+    var pattern = /data\s*=\s*({.*?;)/;
+    let match = string.match(pattern)[0].slice(7, -1);
+    let data = JSON.parse(match);
+    retval["success"] = true;
+    retval["time_stamp"] = Date.now();
+    retval["data"] = data;
+    return retval;
   }
 
   static getTrainInfo(string) {
