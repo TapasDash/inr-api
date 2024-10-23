@@ -8,7 +8,7 @@ import connectDB from "./config/db.js";
 import cors from "cors";
 
 config();
-// connectDB();
+connectDB();
 const PORT = process.env.PORT || 5000;
 const app = express();
 
